@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.4.0
+- Home page card now redirects to /movie/id page
+- Single movie page now displays details
+
 ## v1.3.1
 - Added home page with example movie list design
 

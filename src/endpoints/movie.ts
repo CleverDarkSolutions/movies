@@ -11,3 +11,15 @@ export const fetchPopularMovies = async (): Promise<Movie[]> => {
     throw error;
   }
 };
+
+export const fetchMovieById = async (movieId: string): Promise<Movie> => {
+  try {
+    const response = await api.get('/movie/' + movieId);
+
+    return response.data;
+  }
+  catch (error) {
+    console.error('Error fetching movie by id', error);
+    throw error;
+  }
+};
