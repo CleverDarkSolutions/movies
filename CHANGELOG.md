@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2.0
+- Added basic endpoint
+- Added temporary constants
+- Added movie TS types based on data received
+
 ## v1.1.1
 - Added router to the project
 
