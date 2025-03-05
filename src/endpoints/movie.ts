@@ -1,16 +1,13 @@
-import axios from 'axios';
-import { API_URL, BEARER_TOKEN } from '../constants';
+import api from './http-service';
+import { Movie } from '../types/movie';
 
-const options = {
-  headers: {
-    accept: 'application/json',
-    Authorization: BEARER_TOKEN,
-  },
-};
+export const fetchPopularMovies = async (): Promise<Movie[]> => {
+  try {
+    const response = await api.get('/movie/popular');
 
-export const fetchMovieById = async (id: string) => {
-  axios
-    .get(`${API_URL}/movie/${id}`, options)
-    .then((res) => console.log(res.data))
-    .catch((err) => console.error(err));
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching movies:', error);
+    throw error;
+  }
 };

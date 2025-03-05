@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.0
+- Added configured http service as Axios instance
+- Added basic components
+
 ## v1.2.0
 - Added basic endpoint
 - Added temporary constants
