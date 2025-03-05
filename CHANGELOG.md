@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.3.1
+- Added home page with example movie list design
+
 ## v1.3.0
 - Added configured http service as Axios instance
 - Added basic components

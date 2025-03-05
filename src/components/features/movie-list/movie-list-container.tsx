@@ -21,7 +21,7 @@ const MovieListContainer: React.FC<MovieListProps> = ({ movies }) => {
   return (
     <Container>
       <Grid container spacing={3} justifyContent="center">
-        {movies.map((movie) => (
+        {movies?.map((movie) => (
           <Grid item key={movie.id} xs={12} sm={6} md={4} lg={3}>
             <MovieCard movie={movie} />
           </Grid>
