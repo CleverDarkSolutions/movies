@@ -1,5 +1,10 @@
 # Changelog
 
+## v.1.5.0
+- Added new endpoints
+- Added simple search functionality
+- 
+
 ## v1.4.0
 - Home page card now redirects to /movie/id page
 - Single movie page now displays details

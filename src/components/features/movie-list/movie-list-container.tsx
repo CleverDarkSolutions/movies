@@ -8,16 +8,6 @@ interface MovieListProps {
 }
 
 const MovieListContainer: React.FC<MovieListProps> = ({ movies }) => {
-  if (!movies || movies.length === 0) {
-    return (
-      <Container>
-        <Typography variant="h5" textAlign="center" mt={5}>
-                    No movies available
-        </Typography>
-      </Container>
-    );
-  }
-
   return (
     <Container>
       <Grid container spacing={3} justifyContent="center">

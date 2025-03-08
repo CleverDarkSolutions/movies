@@ -3,6 +3,7 @@ import { Movie } from '../types/movie';
 import { Container, CircularProgress, Typography } from '@mui/material';
 import { fetchPopularMovies } from '../endpoints/movie';
 import MovieListContainer from '../components/features/movie-list/movie-list-container';
+import SearchForm from '../components/features/search/search-form';
 
 const HomePage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -29,10 +30,11 @@ const HomePage: React.FC = () => {
 
   return (
     <Container>
+      <SearchForm movies={movies} setMovies={setMovies} setLoading={setLoading}/>
       <Typography variant="h4" textAlign="center" my={3}>
                 Popular Movies
       </Typography>
-      {movies.length > 0 ? <MovieListContainer movies={movies}/> : <div>No movies</div>}
+      <MovieListContainer movies={movies}/> : <div>No movies</div>
     </Container>
   );
 };

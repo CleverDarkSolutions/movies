@@ -23,3 +23,30 @@ export const fetchMovieById = async (movieId: string): Promise<Movie> => {
     throw error;
   }
 };
+
+export const fetchGenres = async (): Promise<{ id: number; name: string }[]> => {
+  try {
+    const response = await api.get('/genre/movie/list');
+
+    return response.data.genres;
+  } catch (error) {
+    console.error('Error fetching genres:', error);
+
+    return [];
+  }
+};
+
+export const searchMovies = async (query: string): Promise<Movie[]> => {
+  try {
+    const response = await api.get('/search/movie', {
+      params: { query: query },
+    });
+
+    return response.data.results;
+  }
+  catch (error) {
+    console.error('Error fetching genres:', error);
+
+    return [];
+  }
+};
