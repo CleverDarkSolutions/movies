@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.5.4
+- Fixed toggling text after query
+
 ## v1.5.3
 - Home button resets search now
 

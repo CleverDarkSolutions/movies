@@ -8,15 +8,17 @@ interface SearchFormProps {
   movies: Movie[];
   setMovies: (movies: Movie[]) => void;
   setLoading: (loading: boolean) => void;
+  setHeaderLabel: (label: string) => void;
 }
 
-const SearchForm = ({ movies, setMovies, setLoading }: SearchFormProps) => {
+const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFormProps) => {
   const [search, setSearch] = useState('');
 
   const handleSearchMovies = async () => {
     try {
       const movieData = await searchMovies(search);
       setMovies(movieData);
+      setHeaderLabel('Results for query ' + search + ' :');
     } catch (err: any) {
       console.error('Failed to load movies.');
     } finally {
@@ -29,6 +31,7 @@ const SearchForm = ({ movies, setMovies, setLoading }: SearchFormProps) => {
     try {
       const movieData = await fetchPopularMovies();
       setMovies(movieData);
+      setHeaderLabel('Popular movies');
     } catch (err) {
       console.log(err);
     } finally {

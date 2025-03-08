@@ -9,12 +9,14 @@ const HomePage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [headerLabel, setHeaderLabel] = useState<string>('Popular movies');
 
   useEffect(() => {
     const loadMovies = async () => {
       try {
         const movieData = await fetchPopularMovies();
         setMovies(movieData);
+        setHeaderLabel('Popular movies');
       } catch (err) {
         setError('Failed to load movies.');
       } finally {
@@ -30,11 +32,11 @@ const HomePage: React.FC = () => {
 
   return (
     <Container>
-      <SearchForm movies={movies} setMovies={setMovies} setLoading={setLoading}/>
+      <SearchForm movies={movies} setMovies={setMovies} setLoading={setLoading} setHeaderLabel={setHeaderLabel}/>
       <Typography variant="h4" textAlign="center" my={3}>
-                Popular Movies
+        {headerLabel}
       </Typography>
-      <MovieListContainer movies={movies}/> : <div>No movies</div>
+      <MovieListContainer movies={movies}/>
     </Container>
   );
 };
