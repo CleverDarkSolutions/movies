@@ -2,11 +2,14 @@ import React from 'react';
 import './App.css';
 import './index.css';
 import AppRouter from './utils/AppRouter';
+import BaseWrapper from './utils/base-wrapper';
 
 const App = () => {
   return (
     <div className="App">
-      <AppRouter/>
+      <BaseWrapper>
+        <AppRouter/>
+      </BaseWrapper>
     </div>
   );
 };

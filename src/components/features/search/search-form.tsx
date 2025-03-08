@@ -25,7 +25,7 @@ const SearchForm = ({ movies, setMovies, setLoading }: SearchFormProps) => {
   };
 
   return (
-    <div className="fixed bg-amber-100 w-full rounded-lg p-4 flex flex-row">
+    <div className="bg-primary-light rounded-lg p-4 flex flex-row">
       <div className="mr-4 pt-1"><Link to='/'>MOVIE HUB</Link></div>
       <div className="flex-1 gap-2">
         <SearchBase search={search} onSearchChange={setSearch} onSubmit={handleSearchMovies} />

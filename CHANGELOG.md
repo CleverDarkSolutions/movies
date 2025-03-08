@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.5.2
+- Added tailwind config
+- Fixed ESLint problems in other files
+
 ## v1.5.1
 - Search is now fixed to the top
 
