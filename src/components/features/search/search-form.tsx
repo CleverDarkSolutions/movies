@@ -2,6 +2,7 @@ import SearchBase from './search-base';
 import { useState } from 'react';
 import { Movie } from '../../../types/movie';
 import { searchMovies } from '../../../endpoints/movie';
+import { Link } from 'react-router-dom';
 
 interface SearchFormProps {
   movies: Movie[];
@@ -24,8 +25,11 @@ const SearchForm = ({ movies, setMovies, setLoading }: SearchFormProps) => {
   };
 
   return (
-    <div>
-      <SearchBase search={search} onSearchChange={setSearch} onSubmit={handleSearchMovies} />
+    <div className="fixed bg-amber-100 w-full rounded-lg p-4 flex flex-row">
+      <div className="mr-4 pt-1"><Link to='/'>MOVIE HUB</Link></div>
+      <div className="flex-1 gap-2">
+        <SearchBase search={search} onSearchChange={setSearch} onSubmit={handleSearchMovies} />
+      </div>
     </div>
   );
 };

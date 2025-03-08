@@ -1,9 +1,11 @@
 # Changelog
 
-## v.1.5.0
+## v1.5.1
+- Search is now fixed to the top
+
+## v1.5.0
 - Added new endpoints
 - Added simple search functionality
-- 
 
 ## v1.4.0
 - Home page card now redirects to /movie/id page
