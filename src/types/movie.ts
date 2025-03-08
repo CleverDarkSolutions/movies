@@ -1,4 +1,4 @@
-interface Genre {
+export interface Genre {
     id: number;
     name: string;
 }
@@ -26,7 +26,8 @@ export interface Movie {
     backdrop_path: string | null;
     belongs_to_collection: null | object;
     budget: number;
-    genres: Genre[];
+    genre_ids?: number[];
+    genres?: Genre[];
     homepage: string;
     id: number;
     imdb_id: string;

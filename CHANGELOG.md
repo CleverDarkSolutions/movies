@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.6.0
+- Added movie categories to description
+
 ## v1.5.4
 - Fixed toggling text after query
 
