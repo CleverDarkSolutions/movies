@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.5.3
+- Home button resets search now
+
 ## v1.5.2
 - Added tailwind config
 - Fixed ESLint problems in other files

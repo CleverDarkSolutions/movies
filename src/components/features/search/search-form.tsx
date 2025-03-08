@@ -1,7 +1,7 @@
 import SearchBase from './search-base';
 import { useState } from 'react';
 import { Movie } from '../../../types/movie';
-import { searchMovies } from '../../../endpoints/movie';
+import { fetchPopularMovies, searchMovies } from '../../../endpoints/movie';
 import { Link } from 'react-router-dom';
 
 interface SearchFormProps {
@@ -24,9 +24,21 @@ const SearchForm = ({ movies, setMovies, setLoading }: SearchFormProps) => {
     }
   };
 
+  const resetSearch = async () => {
+    setSearch('');
+    try {
+      const movieData = await fetchPopularMovies();
+      setMovies(movieData);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="bg-primary-light rounded-lg p-4 flex flex-row">
-      <div className="mr-4 pt-1"><Link to='/'>MOVIE HUB</Link></div>
+      <div className="mr-4 pt-1"><Link to='/' onClick={resetSearch}>MOVIE HUB</Link></div>
       <div className="flex-1 gap-2">
         <SearchBase search={search} onSearchChange={setSearch} onSubmit={handleSearchMovies} />
       </div>
