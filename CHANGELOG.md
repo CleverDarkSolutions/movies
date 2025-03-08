@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.6.2
+- Ratings are now shown in movie cards
+
 ## v1.6.1
 - Added badges for categories in movie cards
 
