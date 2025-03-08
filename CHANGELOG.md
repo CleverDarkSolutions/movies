@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.6.1
+- Added badges for categories in movie cards
+
 ## v1.6.0
 - Added movie categories to description
 

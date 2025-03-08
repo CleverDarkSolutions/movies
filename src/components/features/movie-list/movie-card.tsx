@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, CardContent, CardMedia, Typography } from '@mui/material';
 import { Genre, Movie } from '../../../types/movie';
 import { Link } from 'react-router-dom';
+import AppBadge from '../../common/app-badge';
 
 interface MovieCardProps {
     movie: Movie;
@@ -34,7 +35,9 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, allGenres }: MovieCardProp
           <Typography variant="h6" component="div" gutterBottom color="text.primary">
             {movie.title}
           </Typography>
-          {genreLabels.map((genre) => (<div>{genre.name}</div>))}
+          <div className="flex flex-row my-1">
+            {genreLabels.map((genre) => (<AppBadge text={genre.name}/>))}
+          </div>
           <Typography variant="body2" color="text.secondary">
             {movie.overview.length > 100 ? `${movie.overview.slice(0, 100)}...` : movie.overview}
           </Typography>
