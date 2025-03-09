@@ -1,22 +1,32 @@
 import { Button, Input } from '@mui/material';
+import { useState } from 'react';
 
 interface SearchBaseProps {
-    search: string;
-    onSearchChange: (value: string) => void;
-    onSubmit: () => void;
+    onSearch: (query: string) => void;
 }
 
-const SearchBase = ({ search, onSearchChange, onSubmit }: SearchBaseProps) => {
+const SearchBase = ({ onSearch }: SearchBaseProps) => {
+  const [value, setValue] = useState<string>('');
+
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      onSearch(value);
+    }
+  };
+
   return (
     <div className="flex flex-row">
       <Input
         color="primary"
         placeholder="Search for a movie..."
-        value={search}
-        fullWidth={true}
-        onChange={(e) => onSearchChange(e.target.value)}
+        fullWidth
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+        onKeyPress={handleKeyPress}
       />
-      <Button onClick={onSubmit} variant="outlined" color="primary" sx={{ mx: 4 }}>Search</Button>
+      <Button onClick={() => onSearch(value)} variant="outlined" color="primary" sx={{ mx: 4 }}>
+                Search
+      </Button>
     </div>
   );
 };

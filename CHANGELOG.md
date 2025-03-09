@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.8.1
+- Fixed base search logic
+
 ## v1.8.0
 - Implemented advanced search
 - Added accordion for advanced search to take less space

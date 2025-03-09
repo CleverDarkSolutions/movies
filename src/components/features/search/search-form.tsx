@@ -15,16 +15,19 @@ interface SearchFormProps {
 }
 
 const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFormProps) => {
-  const [search, setSearch] = useState('');
 
-  const handleSearchMovies = async () => {
+  const handleSearchMovies = async (query: string) => {
+    console.log(query);
+    if (query === undefined || query === null || query === '') {
+      return;
+    }
+    setLoading(true);
+    setHeaderLabel(`Results for query "${query}"`);
     try {
-      setLoading(true);
-      const movieData = await searchMovies(search);
+      const movieData = await searchMovies(query);
       setMovies(movieData);
-      setHeaderLabel('Results for query ' + search + ' :');
     } catch (err) {
-      console.error('Failed to load movies.');
+      console.error('Failed to load movies:', err);
     } finally {
       setLoading(false);
     }
@@ -40,7 +43,6 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
   };
 
   const resetSearch = async () => {
-    setSearch('');
     try {
       setLoading(true);
       const movieData = await fetchPopularMovies();
@@ -62,7 +64,7 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
           </Link>
         </div>
         <div className="flex-1">
-          <SearchBase search={search} onSearchChange={setSearch} onSubmit={handleSearchMovies} />
+          <SearchBase onSearch={handleSearchMovies} />
         </div>
       </div>
 
