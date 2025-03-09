@@ -26,6 +26,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, allGenres }: MovieCardProp
       >
         <CardMedia
           component="img"
+          loading="lazy"
           height="250"
           image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}

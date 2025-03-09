@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.9.2
+- Added lazy loading
+
 ## v1.9.1
 - Fixed movie view where there is no backdrop photo
 

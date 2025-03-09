@@ -47,6 +47,7 @@ const MovieDetailsContainer: React.FC = () => {
           <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
             <CardMedia
               component="img"
+              loading="lazy"
               image={movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : '/fallback-image.jpg'}
               alt={movie.title}
             />
