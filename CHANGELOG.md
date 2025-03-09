@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.2
+- Fixed loading animation
+- Fixed result text toggling after advanced search
+
 ## v1.8.1
 - Fixed base search logic
 

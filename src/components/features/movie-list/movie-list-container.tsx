@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Container, Typography } from '@mui/material';
+import { Grid, Container, Typography, CircularProgress } from '@mui/material';
 import MovieCard from './movie-card';
 import { Genre, Movie } from '../../../types/movie';
 import { fetchGenres } from '../../../endpoints/movie';
 
 interface MovieListProps {
     movies: Movie[];
+    loading: boolean;
 }
 
-const MovieListContainer: React.FC<MovieListProps> = ({ movies }) => {
+const MovieListContainer: React.FC<MovieListProps> = ({ movies, loading }) => {
   const [genres, setGenres] = useState<Genre[]>([]);
   useEffect( () => {
     const loadGenres = async () => {
@@ -21,7 +22,9 @@ const MovieListContainer: React.FC<MovieListProps> = ({ movies }) => {
     };
     loadGenres();
   }, []);
-
+  
+  if (loading) return <CircularProgress sx={{ display: 'block', margin: 'auto', mt: 5 }} />;
+  
   return (
     <Container>
       <Grid container spacing={3} justifyContent="center">

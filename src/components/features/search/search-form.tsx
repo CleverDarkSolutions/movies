@@ -40,6 +40,7 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
       console.log('Search results:', movies);
     }
     setMovies(movies);
+    setHeaderLabel('Results for the advanced criteria above');
   };
 
   const resetSearch = async () => {

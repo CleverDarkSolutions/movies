@@ -32,7 +32,6 @@ const MovieDetailsContainer: React.FC = () => {
 
   return (
     <Container sx={{ py: 5 }}>
-      {/* Backdrop Image */}
       <Box
         sx={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
@@ -43,10 +42,7 @@ const MovieDetailsContainer: React.FC = () => {
           mb: 3,
         }}
       />
-
-      {/* Movie Details */}
       <Grid container spacing={4}>
-        {/* Left Column - Movie Poster */}
         <Grid item xs={12} md={4}>
           <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
             <CardMedia
@@ -56,8 +52,7 @@ const MovieDetailsContainer: React.FC = () => {
             />
           </Card>
         </Grid>
-
-        {/* Right Column - Movie Info */}
+        
         <Grid item xs={12} md={8}>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
             {movie.title} ({new Date(movie.release_date).getFullYear()})
@@ -70,8 +65,7 @@ const MovieDetailsContainer: React.FC = () => {
           <Typography variant="body1" paragraph>
             {movie.overview}
           </Typography>
-
-          {/* Movie Details */}
+          
           <Grid container spacing={2}>
             <Grid item xs={6} md={4}>
               <Typography variant="body2" fontWeight="bold">Release Date:</Typography>
@@ -87,7 +81,6 @@ const MovieDetailsContainer: React.FC = () => {
             </Grid>
           </Grid>
 
-          {/* Genres */}
           <Box sx={{ mt: 2 }}>
             <Typography variant="body2" fontWeight="bold">Genres:</Typography>
             {movie.genres && movie.genres.length > 0 ? (
@@ -98,8 +91,7 @@ const MovieDetailsContainer: React.FC = () => {
               <Typography variant="body2">N/A</Typography>
             )}
           </Box>
-
-          {/* Production Companies */}
+          
           <Box sx={{ mt: 2 }}>
             <Typography variant="body2" fontWeight="bold">Production Companies:</Typography>
             {movie.production_companies.length > 0 ? (
