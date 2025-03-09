@@ -6,6 +6,7 @@ import SearchAdvanced from './search-advanced';
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Button } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 import { useSnackbar } from '../common/snackbar-context';
+import TEXT_LABELS from '../../../utils/translations/EN';
 
 interface SearchFormProps {
   movies: Movie[];
@@ -20,17 +21,17 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
 
   const handleSearchMovies = async (query: string) => {
     if (query === undefined || query === null || query === '') {
-      showSnackbar('No query provided', 'error');
+      showSnackbar(TEXT_LABELS.notifications.failure.emptyQuery, 'error');
       
       return;
     }
     setLoading(true);
-    setHeaderLabel(`Results for query "${query}"`);
+    setHeaderLabel(TEXT_LABELS.general.headerLabels.resultsHeader(query));
     try {
       const movieData = await searchMovies(query);
       setMovies(movieData);
     } catch (err) {
-      showSnackbar(`Failed to load movies: ${err}`, 'error');
+      showSnackbar(TEXT_LABELS.notifications.failure.movies);
     } finally {
       setLoading(false);
     }
@@ -38,10 +39,10 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
 
   const handleAdvancedSearch = (movies: Movie[]) => {
     if (!movies || movies.length === 0) {
-      showSnackbar('No movies found.');
+      showSnackbar(TEXT_LABELS.notifications.failure.movies);
     }
     setMovies(movies);
-    setHeaderLabel('Results for the advanced criteria above');
+    setHeaderLabel(TEXT_LABELS.general.headerLabels.advancedSearch);
   };
 
   const resetSearch = async () => {
@@ -49,10 +50,10 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
       setLoading(true);
       const movieData = await fetchPopularMovies();
       setMovies(movieData);
-      setHeaderLabel('Popular movies');
-      showSnackbar('Results restored to default');
+      setHeaderLabel(TEXT_LABELS.general.headerLabels.popularMovies);
+      showSnackbar(TEXT_LABELS.notifications.success.defaultResults);
     } catch (err) {
-      showSnackbar(`Failed to load movies: ${err}`, 'error');
+      showSnackbar(TEXT_LABELS.notifications.failure.movies);
     } finally {
       setLoading(false);
     }
@@ -68,7 +69,7 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
 
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMore />} aria-controls="advanced-search-content" id="advanced-search-header">
-          <Typography>Advanced Search</Typography>
+          <Typography>{TEXT_LABELS.search.advancedSearch}</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <SearchAdvanced onSearchResults={handleAdvancedSearch} />
@@ -77,7 +78,7 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
 
       <div className="w-full mt-2 cursor-pointer">
         <Button onClick={resetSearch} variant="outlined" className="text-xl font-bold">
-              Clear filters
+          {TEXT_LABELS.search.clearFilters}
         </Button>
       </div>
     </div>

@@ -3,6 +3,7 @@ import { TextField, MenuItem, Slider, Button, Box, Typography, Grid } from '@mui
 import { Genre, Movie } from '../../../types/movie';
 import { fetchGenres, searchMoviesAdvanced } from '../../../endpoints/movie';
 import { useSnackbar } from '../common/snackbar-context';
+import TEXT_LABELS from '../../../utils/translations/EN';
 
 interface AdvancedSearchProps {
     onSearchResults: (movies: Movie[]) => void;
@@ -23,7 +24,7 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
         const genreData = await fetchGenres();
         setGenres(genreData);
       } catch (err) {
-        showSnackbar(`Failed to load genres: ${err}`, 'error');
+        showSnackbar(TEXT_LABELS.notifications.failure.genres, 'error');
       }
     };
     loadGenres();
@@ -34,19 +35,19 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
       const movies = await searchMoviesAdvanced({ query, selectedGenre, releaseYear, rating, sortBy });
       onSearchResults(movies);
     } catch (err) {
-      showSnackbar(`Failed to load genres: ${err}`, 'error');
+      showSnackbar(TEXT_LABELS.notifications.failure.movies, 'error');
     }
   };
 
   return (
     <Box className="p-5 border border-gray-300 rounded-lg shadow-lg bg-white">
-      <Typography variant="h5" gutterBottom>Advanced Search</Typography>
+      <Typography variant="h5" gutterBottom>{TEXT_LABELS.search.advancedSearch}</Typography>
 
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <TextField
             fullWidth
-            label="Movie Title"
+            label={TEXT_LABELS.search.movieTitle}
             variant="outlined"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
@@ -57,12 +58,12 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
           <TextField
             select
             fullWidth
-            label="Genre"
+            label={TEXT_LABELS.search.genre}
             variant="outlined"
             value={selectedGenre}
             onChange={(e) => setSelectedGenre(e.target.value)}
           >
-            <MenuItem value="">All Genres</MenuItem>
+            <MenuItem value="">{TEXT_LABELS.search.allGenres}</MenuItem>
             {genres.map((genre) => (
               <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
             ))}
@@ -70,7 +71,7 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
         </Grid>
 
         <Grid item xs={12}>
-          <Typography gutterBottom>Release Year: {releaseYear[0]} - {releaseYear[1]}</Typography>
+          <Typography gutterBottom>{TEXT_LABELS.search.releaseYear} {releaseYear[0]} - {releaseYear[1]}</Typography>
           <Slider
             value={releaseYear}
             onChange={(_, newValue) => setReleaseYear(newValue as number[])}
@@ -81,7 +82,7 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Typography gutterBottom>Minimum Rating: {rating}</Typography>
+          <Typography gutterBottom>{TEXT_LABELS.search.minimumRating}: {rating}</Typography>
           <Slider
             value={rating}
             onChange={(_, newValue) => setRating(newValue as number)}
@@ -96,21 +97,21 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
           <TextField
             select
             fullWidth
-            label="Sort By"
+            label={TEXT_LABELS.search.sortBy}
             variant="outlined"
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
           >
-            <MenuItem value="popularity.desc">Popularity (High to Low)</MenuItem>
-            <MenuItem value="vote_average.desc">Rating (High to Low)</MenuItem>
-            <MenuItem value="release_date.desc">Newest First</MenuItem>
-            <MenuItem value="release_date.asc">Oldest First</MenuItem>
+            <MenuItem value="popularity.desc">{TEXT_LABELS.search.popularityDesc}</MenuItem>
+            <MenuItem value="vote_average.desc">{TEXT_LABELS.search.voteAverageDesc}</MenuItem>
+            <MenuItem value="release_date.desc">{TEXT_LABELS.search.releaseDateDesc}</MenuItem>
+            <MenuItem value="release_date.asc">{TEXT_LABELS.search.releaseDateAsc}</MenuItem>
           </TextField>
         </Grid>
 
         <Grid item xs={12} className="flex justify-end">
           <Button variant="contained" color="primary" onClick={handleSearch}>
-                        Search Movies
+            {TEXT_LABELS.search.searchButton}
           </Button>
         </Grid>
       </Grid>

@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.0
+- Added english string labels as object variable in separate file
+
 ## v1.9.4
 - Changed console logs into snackbar popup
 

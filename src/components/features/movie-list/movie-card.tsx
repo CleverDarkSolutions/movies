@@ -15,7 +15,6 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, allGenres }: MovieCardProp
     if (!movie || !allGenres.length) return;
 
     const labels = allGenres.filter((genre) => movie.genre_ids?.includes(genre.id));
-    //TODO requires a separate component because of mistakes in API structure
     setGenreLabels(labels);
   }, [movie, allGenres]);
 

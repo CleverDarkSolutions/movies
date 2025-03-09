@@ -4,6 +4,7 @@ import MovieCard from './movie-card';
 import { Genre, Movie } from '../../../types/movie';
 import { fetchGenres } from '../../../endpoints/movie';
 import { useSnackbar } from '../common/snackbar-context';
+import TEXT_LABELS from '../../../utils/translations/EN';
 
 interface MovieListProps {
     movies: Movie[];
@@ -20,7 +21,7 @@ const MovieListContainer: React.FC<MovieListProps> = ({ movies, loading }) => {
         const genres = await fetchGenres();
         setGenres(genres);
       } catch (err) {
-        showSnackbar(`Failed to load genres: ${err}`, 'error');
+        showSnackbar(TEXT_LABELS.notifications.failure.genres, 'error');
       }
     };
     loadGenres();
