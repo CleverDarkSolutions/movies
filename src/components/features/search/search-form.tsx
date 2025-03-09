@@ -1,10 +1,9 @@
 import SearchBase from './search-base';
-import { useState } from 'react';
 import { Movie } from '../../../types/movie';
 import { fetchPopularMovies, searchMovies } from '../../../endpoints/movie';
 import { Link } from 'react-router-dom';
 import SearchAdvanced from './search-advanced';
-import { Accordion, AccordionSummary, AccordionDetails, Typography } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Button } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
 
 interface SearchFormProps {
@@ -57,13 +56,8 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
   };
 
   return (
-    <div className="bg-primary-light rounded-lg p-4 flex flex-col">
+    <div className="rounded-lg p-4 flex flex-col">
       <div className="flex items-center mb-3">
-        <div className="mr-4 pt-1">
-          <Link to="/" onClick={resetSearch} className="text-xl font-bold">
-              MOVIE HUB
-          </Link>
-        </div>
         <div className="flex-1">
           <SearchBase onSearch={handleSearchMovies} />
         </div>
@@ -77,6 +71,12 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
           <SearchAdvanced onSearchResults={handleAdvancedSearch} />
         </AccordionDetails>
       </Accordion>
+
+      <div className="w-full mt-2 cursor-pointer">
+        <Button onClick={resetSearch} variant="outlined" className="text-xl font-bold">
+              Clear filters
+        </Button>
+      </div>
     </div>
   );
 };

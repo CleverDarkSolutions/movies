@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.9.0
+- Added global layout wrapper with header
+- Improved search features and design
+
 ## v1.8.2
 - Fixed loading animation
 - Fixed result text toggling after advanced search

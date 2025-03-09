@@ -1,13 +1,17 @@
 import React from 'react';
+import AppHeader from '../components/features/common/app-header';
 
 interface WrapperProps {
     children: React.ReactNode;
 }
 
-const BaseWrapper: React.FC<WrapperProps> = ({ children }) => {
+const BaseWrapper: React.FC<WrapperProps> = ({ children }: WrapperProps) => {
   return (
-    <div className="p-4 border rounded-md shadow-md text-center text-text">
-      {children}
+    <div>
+      <AppHeader />
+      <div>
+        {children}
+      </div>
     </div>
   );
 };

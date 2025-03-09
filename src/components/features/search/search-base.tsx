@@ -24,7 +24,7 @@ const SearchBase = ({ onSearch }: SearchBaseProps) => {
         onChange={(e) => setValue(e.target.value)}
         onKeyPress={handleKeyPress}
       />
-      <Button onClick={() => onSearch(value)} variant="outlined" color="primary" sx={{ mx: 4 }}>
+      <Button onClick={() => onSearch(value)} variant="outlined" color="primary" sx={{ ml: 4 }}>
                 Search
       </Button>
     </div>
