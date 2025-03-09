@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, MenuItem, Slider, Button, Box, Typography, Grid } from '@mui/material';
 import { Genre, Movie } from '../../../types/movie';
 import { fetchGenres, searchMoviesAdvanced } from '../../../endpoints/movie';
+import { useSnackbar } from '../common/snackbar-context';
 
 interface AdvancedSearchProps {
     onSearchResults: (movies: Movie[]) => void;
@@ -14,6 +15,7 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
   const [releaseYear, setReleaseYear] = useState<number[]>([1980, 2024]);
   const [rating, setRating] = useState<number>(5);
   const [sortBy, setSortBy] = useState<string>('popularity.desc');
+  const { showSnackbar } = useSnackbar();
 
   useEffect(() => {
     const loadGenres = async () => {
@@ -21,7 +23,7 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
         const genreData = await fetchGenres();
         setGenres(genreData);
       } catch (err) {
-        console.error('Failed to load genres.');
+        showSnackbar(`Failed to load genres: ${err}`, 'error');
       }
     };
     loadGenres();
@@ -32,7 +34,7 @@ const SearchAdvanced: React.FC<AdvancedSearchProps> = ({ onSearchResults }) => {
       const movies = await searchMoviesAdvanced({ query, selectedGenre, releaseYear, rating, sortBy });
       onSearchResults(movies);
     } catch (err) {
-      console.error('Error searching movies', err);
+      showSnackbar(`Failed to load genres: ${err}`, 'error');
     }
   };
 

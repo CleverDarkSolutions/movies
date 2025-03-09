@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import SearchAdvanced from './search-advanced';
 import { Accordion, AccordionSummary, AccordionDetails, Typography, Button } from '@mui/material';
 import { ExpandMore } from '@mui/icons-material';
+import { useSnackbar } from '../common/snackbar-context';
 
 interface SearchFormProps {
   movies: Movie[];
@@ -15,9 +16,12 @@ interface SearchFormProps {
 
 const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFormProps) => {
 
+  const { showSnackbar } = useSnackbar();
+
   const handleSearchMovies = async (query: string) => {
-    console.log(query);
     if (query === undefined || query === null || query === '') {
+      showSnackbar('No query provided', 'error');
+      
       return;
     }
     setLoading(true);
@@ -26,7 +30,7 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
       const movieData = await searchMovies(query);
       setMovies(movieData);
     } catch (err) {
-      console.error('Failed to load movies:', err);
+      showSnackbar(`Failed to load movies: ${err}`, 'error');
     } finally {
       setLoading(false);
     }
@@ -34,9 +38,7 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
 
   const handleAdvancedSearch = (movies: Movie[]) => {
     if (!movies || movies.length === 0) {
-      console.log('No movies found.');
-    } else {
-      console.log('Search results:', movies);
+      showSnackbar('No movies found.');
     }
     setMovies(movies);
     setHeaderLabel('Results for the advanced criteria above');
@@ -48,8 +50,9 @@ const SearchForm = ({ movies, setMovies, setLoading, setHeaderLabel }: SearchFor
       const movieData = await fetchPopularMovies();
       setMovies(movieData);
       setHeaderLabel('Popular movies');
+      showSnackbar('Results restored to default');
     } catch (err) {
-      console.error(err);
+      showSnackbar(`Failed to load movies: ${err}`, 'error');
     } finally {
       setLoading(false);
     }

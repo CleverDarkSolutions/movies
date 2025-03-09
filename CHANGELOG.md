@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.9.4
+- Changed console logs into snackbar popup
+
 ## v1.9.3
 - Introduced snackbar component
 

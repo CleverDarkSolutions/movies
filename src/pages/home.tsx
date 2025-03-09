@@ -5,12 +5,13 @@ import { fetchPopularMovies } from '../endpoints/movie';
 import MovieListContainer from '../components/features/movie-list/movie-list-container';
 import SearchForm from '../components/features/search/search-form';
 import BaseWrapper from '../utils/base-wrapper';
+import { useSnackbar } from '../components/features/common/snackbar-context';
 
 const HomePage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
   const [headerLabel, setHeaderLabel] = useState<string>('Popular movies');
+  const { showSnackbar } = useSnackbar();
 
   useEffect(() => {
     const loadMovies = async () => {
@@ -19,7 +20,7 @@ const HomePage: React.FC = () => {
         setMovies(movieData);
         setHeaderLabel('Popular movies');
       } catch (err) {
-        setError('Failed to load movies.');
+        showSnackbar('Failed to load movies.');
       } finally {
         setLoading(false);
       }
@@ -27,7 +28,6 @@ const HomePage: React.FC = () => {
 
     loadMovies();
   }, []);
-  if (error) return <Typography color="error" textAlign="center">{error}</Typography>;
 
   return (
     <BaseWrapper>
