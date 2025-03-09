@@ -32,7 +32,7 @@ const MovieDetailsContainer: React.FC = () => {
 
   return (
     <Container sx={{ py: 5 }}>
-      <Box
+      {movie.backdrop_path && <Box
         sx={{
           backgroundImage: `url(https://image.tmdb.org/t/p/original${movie.backdrop_path})`,
           backgroundSize: 'cover',
@@ -41,7 +41,7 @@ const MovieDetailsContainer: React.FC = () => {
           borderRadius: 2,
           mb: 3,
         }}
-      />
+      /> }
       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
           <Card sx={{ borderRadius: 2, boxShadow: 3 }}>

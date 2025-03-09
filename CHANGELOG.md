@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.9.1
+- Fixed movie view where there is no backdrop photo
+
 ## v1.9.0
 - Added global layout wrapper with header
 - Improved search features and design
