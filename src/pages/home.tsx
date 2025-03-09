@@ -4,6 +4,7 @@ import { Container, CircularProgress, Typography } from '@mui/material';
 import { fetchPopularMovies } from '../endpoints/movie';
 import MovieListContainer from '../components/features/movie-list/movie-list-container';
 import SearchForm from '../components/features/search/search-form';
+import { filterMovies } from '../utils/functions';
 
 const HomePage: React.FC = () => {
   const [movies, setMovies] = useState<Movie[]>([]);

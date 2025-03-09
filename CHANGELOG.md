@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.6.3
+- Incomplete records are now filtered out and don't appear in the main view
+- Movie card height has fixed value now
+
 ## v1.6.2
 - Ratings are now shown in movie cards
 

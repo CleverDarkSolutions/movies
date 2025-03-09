@@ -23,16 +23,20 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, allGenres }: MovieCardProp
   return (
     <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
       <Card
-        sx={{ maxWidth: 300, borderRadius: 2, boxShadow: 3, cursor: 'pointer' }}
+        sx={{ maxWidth: 300, height: 600, borderRadius: 2, boxShadow: 3, cursor: 'pointer' }}
       >
         <CardMedia
           component="img"
-          height="400"
+          height="250"
           image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
           alt={movie.title}
         />
         <CardContent>
-          <Typography variant="h6" component="div" gutterBottom color="text.primary">
+          <Typography
+            variant="h6"
+            className="text-[calc(1.2rem-(0.02rem_*_length(var(--title-length),1)))] truncate w-full"
+            style={{ '--title-length': movie.title.length } as React.CSSProperties}
+          >
             {movie.title}
           </Typography>
           <div className="flex flex-row my-1">
@@ -44,7 +48,7 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, allGenres }: MovieCardProp
               ({movie.vote_count})
           </div>
           <Typography variant="body2" color="text.secondary">
-            {movie.overview.length > 100 ? `${movie.overview.slice(0, 100)}...` : movie.overview}
+            {movie.overview.length > 80 ? `${movie.overview.slice(0, 80)}...` : movie.overview}
           </Typography>
         </CardContent>
       </Card>

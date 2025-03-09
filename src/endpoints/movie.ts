@@ -1,11 +1,12 @@
 import api from './http-service';
 import { Movie } from '../types/movie';
+import { filterMovies } from '../utils/functions';
 
 export const fetchPopularMovies = async (): Promise<Movie[]> => {
   try {
     const response = await api.get('/movie/popular');
 
-    return response.data.results;
+    return filterMovies(response.data.results);
   } catch (error) {
     console.error('Error fetching movies:', error);
     throw error;
@@ -42,7 +43,7 @@ export const searchMovies = async (query: string): Promise<Movie[]> => {
       params: { query: query },
     });
 
-    return response.data.results;
+    return filterMovies(response.data.results);
   }
   catch (error) {
     console.error('Error fetching genres:', error);
