@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.1
+- Changed README instructions
+
 ## v2.0.0
 - Added english string labels as object variable in separate file
 
