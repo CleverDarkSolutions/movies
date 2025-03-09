@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent, CardMedia, Rating, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Chip, Rating, Typography } from '@mui/material';
 import { Genre, Movie } from '../../../types/movie';
 import { Link } from 'react-router-dom';
-import AppBadge from '../../common/app-badge';
 
 interface MovieCardProps {
     movie: Movie;
@@ -39,8 +38,8 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, allGenres }: MovieCardProp
           >
             {movie.title}
           </Typography>
-          <div className="flex flex-row my-1">
-            {genreLabels.map((genre) => (<AppBadge text={genre.name}/>))}
+          <div className="flex flex-row my-1 gap-2">
+            {genreLabels.map((genre) => (<Chip label={genre.name}/>))}
           </div>
           <div className="flex flex-row my-1 gap-2 mx-auto">
             {movie.vote_average}

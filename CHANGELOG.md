@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.7.0
+- Redesign of single movie view
+- Badge component is replaced by MUI Chip component
+
 ## v1.6.3
 - Incomplete records are now filtered out and don't appear in the main view
 - Movie card height has fixed value now
