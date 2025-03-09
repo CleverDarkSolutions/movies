@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.8.0
+- Implemented advanced search
+- Added accordion for advanced search to take less space
+
 ## v1.7.0
 - Redesign of single movie view
 - Badge component is replaced by MUI Chip component

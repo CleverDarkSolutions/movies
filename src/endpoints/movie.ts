@@ -51,3 +51,32 @@ export const searchMovies = async (query: string): Promise<Movie[]> => {
     return [];
   }
 };
+
+interface SearchParamsAdvanced {
+  query: string;
+  selectedGenre: string;
+  releaseYear: number[];
+  rating: number;
+  sortBy: string;
+}
+
+export const searchMoviesAdvanced = async (params: SearchParamsAdvanced) => {
+  const { query, selectedGenre, releaseYear, rating, sortBy } = params;
+
+  const response = await api.get('/discover/movie', {
+    params: {
+      language: 'en-US',
+      sort_by: sortBy,
+      include_adult: false,
+      include_video: false,
+      page: 1,
+      'vote_average.gte': rating,
+      'primary_release_date.gte': `${releaseYear[0]}-01-01`,
+      'primary_release_date.lte': `${releaseYear[1]}-12-31`,
+      ...(selectedGenre ? { with_genres: selectedGenre } : {}),
+      ...(query ? { query } : {}),
+    },
+  });
+
+  return response.data.results;
+};
