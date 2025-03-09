@@ -21,15 +21,17 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, allGenres }: MovieCardProp
   return (
     <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none' }}>
       <Card
-        sx={{ maxWidth: 300, height: 600, borderRadius: 2, boxShadow: 3, cursor: 'pointer' }}
+        sx={{ maxWidth: 300, height: 620, borderRadius: 2, boxShadow: 3, cursor: 'pointer' }}
       >
-        <CardMedia
-          component="img"
-          loading="lazy"
-          height="250"
-          image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-          alt={movie.title}
-        />
+        <div className="w-full h-[400px] overflow-hidden">
+          <CardMedia
+            component="img"
+            loading="lazy"
+            className="w-full h-full object-cover"
+            image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            alt={movie.title}
+          />
+        </div>
         <CardContent>
           <Typography
             variant="h6"
@@ -38,9 +40,12 @@ const MovieCard: React.FC<MovieCardProps> = ({ movie, allGenres }: MovieCardProp
           >
             {movie.title}
           </Typography>
-          <div className="flex flex-row my-1 gap-2">
-            {genreLabels.map((genre) => (<Chip label={genre.name}/>))}
+          <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 sm:gap-x-3 sm:gap-y-1 md:gap-x-2 md:gap-y-1 lg:gap-x-1 lg:gap-y-0.5 max-w-full">
+            {genreLabels.map((genre) => (
+              <Chip key={genre.id} label={genre.name} className="truncate max-w-full" />
+            ))}
           </div>
+
           <div className="flex flex-row my-1 gap-2 mx-auto">
             {movie.vote_average}
             <Rating defaultValue={movie.vote_average / 2} readOnly precision={0.5}/>

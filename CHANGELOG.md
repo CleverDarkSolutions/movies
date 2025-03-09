@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.2
+- Redirection fix from nonexisting movie/:id
+- Responsive design fix on mobile
+
 ## v2.0.1
 - Changed README instructions
 

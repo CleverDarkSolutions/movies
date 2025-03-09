@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Container, Grid, Typography, CircularProgress, Chip, Card, CardMedia, CardContent, Box } from '@mui/material';
 import { fetchMovieById } from '../../../endpoints/movie';
 import { Movie } from '../../../types/movie';
@@ -11,6 +11,7 @@ const MovieDetailsContainer: React.FC = () => {
   const [movie, setMovie] = useState<Movie | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const { showSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const loadMovie = async () => {
@@ -29,7 +30,11 @@ const MovieDetailsContainer: React.FC = () => {
 
   if (loading) return <CircularProgress sx={{ display: 'block', margin: 'auto', mt: 5 }} />;
 
-  if (!movie) return <Typography textAlign="center">${TEXT_LABELS.notifications.failure.movie}</Typography>;
+  if (!movie) {
+    navigate('/');
+    
+    return <Typography textAlign="center">{TEXT_LABELS.notifications.failure.movie}</Typography>;
+  }
 
   return (
     <Container sx={{ py: 5 }}>
@@ -74,17 +79,17 @@ const MovieDetailsContainer: React.FC = () => {
               <Typography variant="body2">{movie.release_date}</Typography>
             </Grid>
             <Grid item xs={6} md={4}>
-              <Typography variant="body2" fontWeight="bold">${TEXT_LABELS.movie.runtime}</Typography>
+              <Typography variant="body2" fontWeight="bold">{TEXT_LABELS.movie.runtime}</Typography>
               <Typography variant="body2">{movie.runtime} min</Typography>
             </Grid>
             <Grid item xs={6} md={4}>
-              <Typography variant="body2" fontWeight="bold">${TEXT_LABELS.movie.rating}</Typography>
+              <Typography variant="body2" fontWeight="bold">{TEXT_LABELS.movie.rating}</Typography>
               <Typography variant="body2">{movie.vote_average.toFixed(1)} / 10</Typography>
             </Grid>
           </Grid>
 
           <Box sx={{ mt: 2 }}>
-            <Typography variant="body2" fontWeight="bold">${TEXT_LABELS.movie.genres}</Typography>
+            <Typography variant="body2" fontWeight="bold">{TEXT_LABELS.movie.genres}</Typography>
             {movie.genres && movie.genres.length > 0 ? (
               movie.genres.map((genre) => (
                 <Chip key={genre.id} label={genre.name} sx={{ mr: 1, mb: 1 }} />
