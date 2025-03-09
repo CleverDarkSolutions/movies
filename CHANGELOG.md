@@ -1,5 +1,8 @@
 # Changelog
 
+## v1.9.3
+- Introduced snackbar component
+
 ## v1.9.2
 - Added lazy loading
 
